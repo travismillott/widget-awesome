@@ -2,13 +2,19 @@ var React = require('react')
 var Header = require('./Header.jsx')
 
 module.exports = React.createClass({
-  'displayName': 'BlankPage.jsx',
+  'displayName': 'LikePage.jsx',
+  getInitialState: function () {
+    return {liked: false}
+  },
+  handleClick: function () {
+    this.setState({liked: true})
+  },
   render: function () {
-    var title = 'This page is under construction'
+    var likeLabel = this.state.liked ? 'Liked' : 'Like'
+    var likeClass = this.state.liked ? 'likedButton' : 'notYetLikedButton'
 
-    var header = <Header title={title} />
     return <div className='Page'>
-      {header}
+      <button className={likeClass} onClick={this.handleClick} disabled={this.state.liked}>{likeLabel}</button>
     </div>
   }
 })
